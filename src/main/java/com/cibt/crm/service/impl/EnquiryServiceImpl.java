@@ -6,6 +6,7 @@
 package com.cibt.crm.service.impl;
 
 import com.cibt.crm.dto.EnquiryDTO;
+import com.cibt.crm.entity.master.Enquiry;
 import com.cibt.crm.service.EnquiryService;
 import java.util.List;
 import org.springframework.stereotype.Service;
@@ -18,12 +19,12 @@ import org.springframework.stereotype.Service;
 public class EnquiryServiceImpl implements EnquiryService {
 
     @Override
-    public List<EnquiryDTO> findAll() {
+    public List<Enquiry> findAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public EnquiryDTO findById(int id) {
+    public Enquiry findById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -33,8 +34,7 @@ public class EnquiryServiceImpl implements EnquiryService {
     }
 
     @Override
-    public int delete(EnquiryDTO model) {
+    public int delete(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 }

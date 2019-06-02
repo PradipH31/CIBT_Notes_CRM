@@ -6,10 +6,11 @@
 package com.cibt.crm.service;
 
 import com.cibt.crm.dto.EnquirySourceDTO;
+import com.cibt.crm.entity.master.EnquirySource;
 
 /**
  *
  * @author HP B&O
  */
-public interface EnquirySourceService extends GenericService<EnquirySourceDTO> {
+public interface EnquirySourceService extends GenericService<EnquirySourceDTO,EnquirySource> {
 }

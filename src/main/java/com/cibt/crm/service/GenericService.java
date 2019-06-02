@@ -11,13 +11,13 @@ import java.util.List;
  *
  * @author HP B&O
  */
-public interface GenericService<T> {
+public interface GenericService<TDTO,TModel> {
 
-    List<T> findAll();
+    List<TModel> findAll();
 
-    T findById(int id);
+    TModel findById(int id);
 
-    int save(T model);
+    int save(TDTO model);
 
-    int delete(T model);
+    int delete(int id);
 }

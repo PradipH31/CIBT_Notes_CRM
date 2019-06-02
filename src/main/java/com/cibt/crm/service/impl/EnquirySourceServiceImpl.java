@@ -6,6 +6,7 @@
 package com.cibt.crm.service.impl;
 
 import com.cibt.crm.dto.EnquirySourceDTO;
+import com.cibt.crm.entity.master.EnquirySource;
 import com.cibt.crm.repository.EnquirySourceRepository;
 import com.cibt.crm.service.EnquirySourceService;
 import java.util.List;
@@ -23,13 +24,13 @@ public class EnquirySourceServiceImpl implements EnquirySourceService {
     private EnquirySourceRepository repository;
 
     @Override
-    public List<EnquirySourceDTO> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<EnquirySource> findAll() {
+        return repository.getAll();
     }
 
     @Override
-    public EnquirySourceDTO findById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public EnquirySource findById(int id) {
+        return repository.findById(id);
     }
 
     @Override
@@ -38,8 +39,8 @@ public class EnquirySourceServiceImpl implements EnquirySourceService {
     }
 
     @Override
-    public int delete(EnquirySourceDTO model) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int delete(int id) {
+        return repository.delete(id);
     }
 
 }
