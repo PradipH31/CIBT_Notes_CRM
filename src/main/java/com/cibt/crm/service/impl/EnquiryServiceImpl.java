@@ -8,11 +8,13 @@ package com.cibt.crm.service.impl;
 import com.cibt.crm.dto.EnquiryDTO;
 import com.cibt.crm.service.EnquiryService;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author HP B&O
  */
+@Service
 public class EnquiryServiceImpl implements EnquiryService {
 
     @Override
