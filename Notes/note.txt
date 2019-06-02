@@ -9,4 +9,7 @@ Prerequisities:
 	jstl(jstl)1.2
 	mysql-connector-java(mysql)6.0.6
 For Spring Framework:
-	
+	spring-webmvc(org.springframework)5.1.6
+	spring-jdbc(org.springframework)5.1.6
+	jackson-core(com.fasterxml.jackson.core)2.9.8
+	jackson-databind(com.fasterxml.jackson-core)2.9.8
