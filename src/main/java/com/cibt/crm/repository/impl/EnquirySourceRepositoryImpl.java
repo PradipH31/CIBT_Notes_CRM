@@ -7,9 +7,13 @@ package com.cibt.crm.repository.impl;
 
 import com.cibt.crm.entity.master.EnquirySource;
 import com.cibt.crm.repository.EnquirySourceRepository;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -33,22 +37,54 @@ public class EnquirySourceRepositoryImpl implements EnquirySourceRepository {
 
     @Override
     public int update(EnquirySource model) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "update mst_enquiry_sources set source_name=?"
+                + ",source_color=?,modified_date=CURRENT_TIMESTAMP "
+                + " where id=?";
+        return template.update(sql, new Object[]{
+            model.getName(), model.getColor(), model.getId()
+        });
     }
 
     @Override
-    public int delete(EnquirySource model) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int delete(int id) {
+        String sql = "update mst_enquiry_sources set is_deleted=1"
+                + ",deleted_date=CURRENT_TIMESTAMP "
+                + " where id=?";
+        return template.update(sql, new Object[]{id});
     }
 
     @Override
     public EnquirySource findById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "select * from vw_enquiry_sources where id=?";
+        return template.queryForObject(sql, new Object[]{id}, new RowMapper<EnquirySource>() {
+            @Override
+            public EnquirySource mapRow(ResultSet rs, int i) throws SQLException {
+                EnquirySource source = new EnquirySource();
+                source.setId(rs.getInt("id"));
+                source.setName(rs.getString("source_name"));
+                source.setColor(rs.getString("source_color"));
+                source.setCreatedDate(new Date(rs.getDate("created_date").getTime()));
+                source.setModifiedDate(new Date(rs.getDate("modified_date").getTime()));
+                return source;
+            }
+        });
     }
 
     @Override
     public List<EnquirySource> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "select * from vw_enquiry_sources";
+        return template.query(sql, new RowMapper<EnquirySource>() {
+            @Override
+            public EnquirySource mapRow(ResultSet rs, int i) throws SQLException {
+                EnquirySource source = new EnquirySource();
+                source.setId(rs.getInt("id"));
+                source.setName(rs.getString("source_name"));
+                source.setColor(rs.getString("source_color"));
+                source.setCreatedDate(new Date(rs.getDate("created_date").getTime()));
+                source.setModifiedDate(new Date(rs.getDate("modified_date").getTime()));
+                return source;
+            }
+        });
     }
 
 }

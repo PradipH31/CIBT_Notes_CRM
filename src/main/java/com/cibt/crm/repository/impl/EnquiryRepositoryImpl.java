@@ -26,7 +26,7 @@ public class EnquiryRepositoryImpl implements EnquiryRepository {
     }
 
     @Override
-    public int delete(Enquiry model) {
+    public int delete(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

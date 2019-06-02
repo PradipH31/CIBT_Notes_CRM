@@ -17,7 +17,7 @@ public interface GenericRepository<T> {
 
     int update(T model);
 
-    int delete(T model);
+    int delete(int id);
 
     T findById(int id);
 
