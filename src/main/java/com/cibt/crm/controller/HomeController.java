@@ -19,6 +19,6 @@ public class HomeController {
 
     @GetMapping
     public String index() {
-        return "/WEB-INF/views/index.jsp";
+        return "index";
     }
 }
