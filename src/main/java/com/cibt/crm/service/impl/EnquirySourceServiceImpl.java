@@ -35,7 +35,15 @@ public class EnquirySourceServiceImpl implements EnquirySourceService {
 
     @Override
     public int save(EnquirySourceDTO model) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EnquirySource source=new EnquirySource();
+        source.setId(model.getId());
+        source.setName(model.getColor());
+        source.setColor(model.getColor());
+        if(source.getId()==0){
+            return repository.insert(source);
+        }else{
+            return repository.update(source);
+        }
     }
 
     @Override
