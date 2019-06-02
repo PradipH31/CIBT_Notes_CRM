@@ -1,3 +1,12 @@
 New Maven Web Application
 
 DTO entity consists of data to be input from form
+
+Dependencies:
+Prerequisities:
+	javax.servlet-api(javax.servlet)4.0.1
+	javax.servlet.jsp(javax.servlet.jsp-api)4.0.1
+	jstl(jstl)1.2
+	mysql-connector-java(mysql)6.0.6
+For Spring Framework:
+	
