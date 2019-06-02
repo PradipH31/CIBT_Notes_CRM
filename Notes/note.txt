@@ -1,1 +1,3 @@
 New Maven Web Application
+
+DTO entity consists of data to be input from form
