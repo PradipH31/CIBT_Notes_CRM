@@ -30,13 +30,6 @@ public class EnquiryStatusController extends CRUDController<EnquiryStatusDTO> {
         uriPath = "master/enquirystatus/";
     }
 
-    @GetMapping
-    @Override
-    public String index(Model model) {
-        model.addAttribute("records", service.findAll());
-        return "master/enquirystatus/index";
-    }
-
     @GetMapping(value = "/edit/{id}")
     @Override
     public String edit(@PathVariable("id") int id,Model model) {

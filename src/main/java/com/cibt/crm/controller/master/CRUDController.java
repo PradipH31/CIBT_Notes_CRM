@@ -16,7 +16,10 @@ public abstract class CRUDController<T> {
 
     protected String uriPath = "";
 
-    public abstract String index(Model model);
+    @GetMapping
+    public String index() {
+        return uriPath + "/index";
+    }
 
     @GetMapping(value = "/add")
     public String add() {
