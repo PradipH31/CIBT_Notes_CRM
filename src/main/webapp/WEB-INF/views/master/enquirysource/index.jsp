@@ -53,7 +53,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success">Save</button>
+                    <button type="button" id="save-btn" class="btn btn-success">Save</button>
                 </div>
             </form>
         </div><!-- /.modal-content -->
@@ -65,6 +65,10 @@
             let $dialog = $("#source-dialog");
             $dialog.find('.modal-title').html('Add Enquiry Source');
             $dialog.modal();
+        });
+        $("#source-form").on('submit', function () {
+            
+            return false;
         });
     });
 </script>
