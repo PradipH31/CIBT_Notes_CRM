@@ -56,9 +56,11 @@ public class EnquirySourceController extends CRUDController<EnquirySourceDTO> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @PostMapping(value = "/delete/{id}")
     @Override
-    public String delete(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String delete(@PathVariable("id")int id) {
+        service.delete(id);
+        return "redirect:/admin/master/enquiry/source";
     }
 
 }

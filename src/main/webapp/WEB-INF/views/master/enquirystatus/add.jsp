@@ -1,17 +1,17 @@
-<%-- 
-    Document   : add
-    Created on : Jun 2, 2019, 5:10:48 PM
-    Author     : HP B&O
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<%@include file="../../shared/header.jsp" %>
+<div class="page-header">
+    <h1>Add Enquiry Status</h1>
+    <form action="${SITE_URL}/admin/master/enquiry/status" method="post">
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" name="name" required="required" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Color</label>
+            <input type="text" name="color" required="required" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-success">Save</button>
+        <a href="${SITE_URL}/admin/master/enquiry/status">Back</a>
+    </form>
+</div>
+<%@include file="../../shared/footer.jsp" %>
