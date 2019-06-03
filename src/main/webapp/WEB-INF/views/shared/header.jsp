@@ -13,8 +13,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="stylesheet" href="${SITE_URL}/webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
-            <link rel="stylesheet" href="${SITE_URL}/webjars/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
-</head>
+        <link rel="stylesheet" href="${SITE_URL}/webjars/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
+        <script src="${SITE_URL}/webjars/bootstrap/3.3.7/js/bootstrap-min.js"></script>
+    </head>
     <body>
         <div class="container">
             <%@include file="menu.jsp" %>
