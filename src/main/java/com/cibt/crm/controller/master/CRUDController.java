@@ -6,6 +6,7 @@
 package com.cibt.crm.controller.master;
 
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  *
@@ -13,9 +14,14 @@ import org.springframework.ui.Model;
  */
 public abstract class CRUDController<T> {
 
+    protected String uriPath = "";
+
     public abstract String index(Model model);
 
-    public abstract String add();
+    @GetMapping(value = "/add")
+    public String add() {
+        return uriPath + "add";
+    }
 
     public abstract String edit(int id);
 

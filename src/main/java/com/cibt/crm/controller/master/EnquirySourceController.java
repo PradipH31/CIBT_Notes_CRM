@@ -24,16 +24,15 @@ public class EnquirySourceController extends CRUDController<EnquirySourceDTO> {
     @Autowired
     private EnquirySourceService service;
 
+    public EnquirySourceController() {
+        uriPath="master/enquirysource/";
+    }
+
     @GetMapping
     @Override
     public String index(Model model) {
         model.addAttribute("sources", service.findAll());
         return "master/enquirysource/index";
-    }
-
-    @Override
-    public String add() {
-        return "master/enquirysource/add";
     }
 
     @Override
