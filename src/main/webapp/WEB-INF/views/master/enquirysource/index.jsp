@@ -37,15 +37,19 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <script>
-    $(document).ready(function () {
+    function load() {
         var $content = $('#view-content').html('<h1>Loading...</h1>');
         $.get('${SITE_URL}/admin/master/enquiry/source/table', function (data) {
             $content.html(data);
         });
+    }
+    $(document).ready(function () {
+        load();
         $("#add-btn").on('click', function () {
             let $dialog = $("#source-dialog");
             $dialog.find('.modal-title').html('Add Enquiry Source');
             $dialog.modal();
+            $('input').val('');
         });
         $("#source-form").on('submit', function () {
             $.ajax({
@@ -54,8 +58,8 @@
                 data: $("#source-form").serialize(),
                 success: function (resp) {
                     if (resp) {
-                        //$('#source-dialog').modal('hide');
-                        window.location = '${SITE_URL}/admin/master/enquiry/source;'
+                        $('#source-dialog').modal('hide');
+                        load();
                     }
                 }
             });
