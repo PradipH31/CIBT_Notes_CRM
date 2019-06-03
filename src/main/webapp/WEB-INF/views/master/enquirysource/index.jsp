@@ -4,7 +4,7 @@
 </div>
 <div class="pull-right">
     <p>
-        <a href="${SITE_URL}/admin/master/enquiry/source/add" class="btn btn-primary" title="Add Enquiry Source">
+        <a href="javascript:void(0)" id="add-btn" class="btn btn-primary" title="Add Enquiry Source">
             <span class="glyphicon glyphicon-plus"></span>
         </a>
     </p>
@@ -33,4 +33,39 @@
     </c:forEach>
 </tbody>
 </table>
+<div id="source-dialog" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <form id="source-form" action="${SITE_URL}/admin/master/enquiry/source" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="name" required="required" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Color</label>
+                        <input type="text" name="color" required="required" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success">Save</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script>
+    $(document).ready(function () {
+        $("#add-btn").on('click', function () {
+            let $dialog = $("#source-dialog");
+            $dialog.find('.modal-title').html('Add Enquiry Source');
+            $dialog.modal();
+        });
+    });
+</script>
 <%@include file="../../shared/footer.jsp" %>
