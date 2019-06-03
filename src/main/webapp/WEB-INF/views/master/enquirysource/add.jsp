@@ -1,7 +1,7 @@
 <%@include file="../../shared/header.jsp" %>
 <div class="page-header">
     <h1>Add Enquiry Source</h1>
-    <form action="${SITE_URL}/admin/master/enquiry/source/save" method="post">
+    <form action="${SITE_URL}/admin/master/enquiry/source" method="post">
         <div class="form-group">
             <label>Name</label>
             <input type="text" name="name" required="required" class="form-control">

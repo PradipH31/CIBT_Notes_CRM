@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -25,7 +27,7 @@ public class EnquirySourceController extends CRUDController<EnquirySourceDTO> {
     private EnquirySourceService service;
 
     public EnquirySourceController() {
-        uriPath="master/enquirysource/";
+        uriPath = "master/enquirysource/";
     }
 
     @GetMapping
@@ -35,14 +37,18 @@ public class EnquirySourceController extends CRUDController<EnquirySourceDTO> {
         return "master/enquirysource/index";
     }
 
+    @GetMapping(value = "/edit/{id}")
     @Override
-    public String edit(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String edit(@PathVariable("id") int id,Model model) {
+        model.addAttribute("source", service.findById(id));
+        return "master/enquirysource/edit";
     }
 
+    @PostMapping
     @Override
     public String save(EnquirySourceDTO model) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        service.save(model);
+        return "redirect:/admin/master/enquiry/source";
     }
 
     @Override

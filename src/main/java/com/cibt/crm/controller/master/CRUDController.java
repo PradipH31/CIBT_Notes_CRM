@@ -23,7 +23,7 @@ public abstract class CRUDController<T> {
         return uriPath + "add";
     }
 
-    public abstract String edit(int id);
+    public abstract String edit(int id, Model model);
 
     public abstract String save(T model);
 
