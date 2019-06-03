@@ -5,13 +5,15 @@
  */
 package com.cibt.crm.controller.master;
 
+import org.springframework.ui.Model;
+
 /**
  *
  * @author HP B&O
  */
 public abstract class CRUDController<T> {
 
-    public abstract String index();
+    public abstract String index(Model model);
 
     public abstract String add();
 

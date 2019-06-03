@@ -9,6 +9,7 @@ import com.cibt.crm.dto.EnquirySourceDTO;
 import com.cibt.crm.service.EnquirySourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -25,13 +26,14 @@ public class EnquirySourceController extends CRUDController<EnquirySourceDTO> {
 
     @GetMapping
     @Override
-    public String index() {
+    public String index(Model model) {
+        model.addAttribute("sources", service.findAll());
         return "master/enquirysource/index";
     }
 
     @Override
     public String add() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "master/enquirysource/add";
     }
 
     @Override

@@ -6,6 +6,7 @@
 package com.cibt.crm.controller.master;
 
 import com.cibt.crm.dto.EnquiryStatusDTO;
+import org.springframework.ui.Model;
 
 /**
  *
@@ -14,7 +15,7 @@ import com.cibt.crm.dto.EnquiryStatusDTO;
 public class EnquiryStatusController extends CRUDController<EnquiryStatusDTO> {
     
     @Override
-    public String index() {
+    public String index(Model model) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
