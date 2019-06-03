@@ -13,6 +13,9 @@ For Spring Framework:
 	spring-jdbc(org.springframework)5.1.6
 	jackson-core(com.fasterxml.jackson.core)2.9.8
 	jackson-databind(com.fasterxml.jackson-core)2.9.8
+Newer:
+	bootstrap(org.webjars)3.3.7
+	jquery(org.webjars)3.4.1
 	
 	
 Add modified date in update queries
