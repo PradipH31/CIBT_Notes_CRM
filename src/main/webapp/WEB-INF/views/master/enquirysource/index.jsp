@@ -38,6 +38,10 @@
 </div><!-- /.modal -->
 <script>
     $(document).ready(function () {
+        var $content = $('#view-content').html('<h1>Loading...</h1>');
+        $.get('${SITE_URL}/admin/master/enquiry/source/table', function (data) {
+            $content.html(data);
+        });
         $("#add-btn").on('click', function () {
             let $dialog = $("#source-dialog");
             $dialog.find('.modal-title').html('Add Enquiry Source');
