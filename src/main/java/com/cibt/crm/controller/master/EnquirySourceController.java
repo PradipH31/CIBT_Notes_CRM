@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
@@ -39,7 +40,7 @@ public class EnquirySourceController extends CRUDController<EnquirySourceDTO> {
 
     @GetMapping(value = "/edit/{id}")
     @Override
-    public String edit(@PathVariable("id") int id,Model model) {
+    public String edit(@PathVariable("id") int id, Model model) {
         model.addAttribute("source", service.findById(id));
         return "master/enquirysource/edit";
     }
@@ -51,6 +52,12 @@ public class EnquirySourceController extends CRUDController<EnquirySourceDTO> {
         return "redirect:/admin/master/enquiry/source";
     }
 
+    @PostMapping(value = "/save")
+    @ResponseBody
+    public boolean saveJson(EnquirySourceDTO model) {
+        return service.save(model) > 0;
+    }
+
     @Override
     public String detail(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -58,7 +65,7 @@ public class EnquirySourceController extends CRUDController<EnquirySourceDTO> {
 
     @PostMapping(value = "/delete/{id}")
     @Override
-    public String delete(@PathVariable("id")int id) {
+    public String delete(@PathVariable("id") int id) {
         service.delete(id);
         return "redirect:/admin/master/enquiry/source";
     }

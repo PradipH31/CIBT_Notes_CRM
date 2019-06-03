@@ -40,7 +40,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title"></h4>
             </div>
-            <form id="source-form" action="${SITE_URL}/admin/master/enquiry/source" method="post">
+            <form id="source-form" method="post">
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Name</label>
@@ -67,7 +67,17 @@
             $dialog.modal();
         });
         $("#source-form").on('submit', function () {
-            
+            $.ajax({
+                url: '${SITE_URL}/admin/master/enquiry/source/save',
+                method: 'post',
+                data: $("#source-form").serialize(),
+                success: function (resp) {
+                    if (resp) {
+                        //$('#source-dialog').modal('hide');
+                        window.location = '${SITE_URL}/admin/master/enquiry/source;'
+                    }
+                }
+            });
             return false;
         });
     });
