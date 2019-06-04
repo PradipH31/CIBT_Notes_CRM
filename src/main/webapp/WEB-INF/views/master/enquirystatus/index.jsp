@@ -1,14 +1,4 @@
 <%@include file="../../shared/header.jsp" %>
-<div class="page-header">
-    <h1>Enquiry Status</h1>
-</div>
-<div class="pull-right">
-    <p>
-        <a href="javascript:void(0)" id="add-btn" class="btn btn-primary" title="Add Enquiry Status">
-            <span class="glyphicon glyphicon-plus"></span>
-        </a>
-    </p>
-</div>
 <div id="view-content"></div>
 <%@include file="components/status-form.jsp" %>
 <script>
@@ -20,13 +10,6 @@
     }
     $(document).ready(function () {
         load();
-        $("#add-btn").on('click', function () {
-            let $dialog = $("#status-dialog");
-            $dialog.find('.modal-title').html('Add Enquiry Status');
-            $dialog.modal();
-            $('input').val('');
-            $('#status-id').val(0);
-        });
         $("#status-form").on('submit', function () {
             $.ajax({
                 url: '${SITE_URL}/admin/master/enquiry/status/save',

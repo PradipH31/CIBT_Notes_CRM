@@ -219,8 +219,6 @@
 <script src="${SITE_URL}/webjars/adminlte/2.3.11/plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- ChartJS 1.0.1 -->
 <script src="${SITE_URL}/webjars/adminlte/2.3.11/plugins/chartjs/Chart.min.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="${SITE_URL}/webjars/adminlte/2.3.11/dist/js/pages/dashboard2.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="${SITE_URL}/webjars/adminlte/2.3.11/dist/js/demo.js"></script>
 </body>

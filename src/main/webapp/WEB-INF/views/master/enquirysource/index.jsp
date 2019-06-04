@@ -1,14 +1,4 @@
 <%@include file="../../shared/header.jsp" %>
-<div class="page-header">
-    <h1>Enquiry Source</h1>
-</div>
-<div class="pull-right">
-    <p>
-        <a href="javascript:void(0)" id="add-btn" class="btn btn-primary" title="Add Enquiry Source">
-            <span class="glyphicon glyphicon-plus"></span>
-        </a>
-    </p>
-</div>
 <div id="view-content"></div>
 <%@include file="components/source-form.jsp" %>
 <script>
@@ -20,13 +10,6 @@
     }
     $(document).ready(function () {
         load();
-        $("#add-btn").on('click', function () {
-            let $dialog = $("#source-dialog");
-            $dialog.find('.modal-title').html('Add Enquiry Source');
-            $dialog.modal();
-            $('input').val('');
-            $('#source-id').val(0);
-        });
         $("#source-form").on('submit', function () {
             $.ajax({
                 url: '${SITE_URL}/admin/master/enquiry/source/save',

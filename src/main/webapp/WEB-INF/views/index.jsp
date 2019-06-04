@@ -813,3 +813,5 @@
 </div>
 <!-- /.row -->
 <%@include file="shared/footer.jsp" %>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="${SITE_URL}/webjars/adminlte/2.3.11/dist/js/pages/dashboard2.js"></script>
