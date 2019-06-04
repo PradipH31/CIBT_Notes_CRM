@@ -28,7 +28,10 @@
         <!-- AdminLTE Skins. Choose a skin from the css/skins
              folder instead of downloading all of them to reduce the load. -->
         <link rel="stylesheet" href="${SITE_URL}/webjars/adminlte/2.3.11/dist/css/skins/_all-skins.min.css">
-
+        <!-- jQuery 2.2.3 -->
+        <script src="${SITE_URL}/webjars/adminlte/2.3.11/plugins/jQuery/jquery-2.2.3.min.js"></script>
+        <!-- Bootstrap 3.3.6 -->
+        <script src="${SITE_URL}/webjars/adminlte/2.3.11/bootstrap/js/bootstrap.min.js"></script>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -306,3 +309,15 @@
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
+                <section class="content-header">
+                    <h1>
+                        Dashboard
+                        <small>Version 2.0</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li class="active">Dashboard</li>
+                    </ol>
+                </section>
+                <!-- Main content -->
+                <section class="content">

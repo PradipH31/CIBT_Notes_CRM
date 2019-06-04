@@ -1,3 +1,4 @@
+</section>
 <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
@@ -205,10 +206,6 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery 2.2.3 -->
-<script src="${SITE_URL}/webjars/adminlte/2.3.11/plugins/jQuery/jquery-2.2.3.min.js"></script>
-<!-- Bootstrap 3.3.6 -->
-<script src="${SITE_URL}/webjars/adminlte/2.3.11/bootstrap/js/bootstrap.min.js"></script>
 <!-- FastClick -->
 <script src="${SITE_URL}/webjars/adminlte/2.3.11/plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
