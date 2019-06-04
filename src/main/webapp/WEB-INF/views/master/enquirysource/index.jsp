@@ -9,7 +9,7 @@
         </a>
     </p>
 </div>
-<div class="view-content"></div>
+<div id="view-content"></div>
 <%@include file="components/source-form.jsp" %>
 <script>
     function load() {

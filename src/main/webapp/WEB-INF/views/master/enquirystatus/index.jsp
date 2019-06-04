@@ -4,33 +4,43 @@
 </div>
 <div class="pull-right">
     <p>
-        <a href="${SITE_URL}/admin/master/enquiry/status/add" class="btn btn-primary" title="Add Enquiry Source">
+        <a href="javascript:void(0)" id="add-btn" class="btn btn-primary" title="Add Enquiry Status">
             <span class="glyphicon glyphicon-plus"></span>
         </a>
     </p>
 </div>
-<table class="table table-hover">
-    <thead>
-    <th>Id</th>
-    <th>Name</th>
-    <th>Color</th>
-</thead>
-<tbody>
-    <c:forEach var="record" items="${records}">
-        <tr>
-            <td>${record.id}</td>
-            <td>${record.name}</td>
-            <td style="background: ${record.color}">${record.color}</td>
-            <td>
-                <a href="${SITE_URL}/admin/master/enquiry/status/edit/${record.id}" class="btn btn-success btn-xs" title="Edit Enquiry Source">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                </a>
-                <a href="${SITE_URL}/admin/master/enquiry/status/delete/${record.id}" class="btn btn-danger btn-xs" title="Delete Enquiry Source">
-                    <span class="glyphicon glyphicon-trash"></span>
-                </a>
-            </td>
-        </tr>
-    </c:forEach>
-</tbody>
-</table>
+<div id="view-content"></div>
+<%@include file="components/status-form.jsp" %>
+<script>
+    function load() {
+        var $content = $('#view-content').html('<h1>Loading...</h1>');
+        $.get('${SITE_URL}/admin/master/enquiry/status/table', function (data) {
+            $content.html(data);
+        });
+    }
+    $(document).ready(function () {
+        load();
+        $("#add-btn").on('click', function () {
+            let $dialog = $("#status-dialog");
+            $dialog.find('.modal-title').html('Add Enquiry Status');
+            $dialog.modal();
+            $('input').val('');
+            $('#status-id').val(0);
+        });
+        $("#status-form").on('submit', function () {
+            $.ajax({
+                url: '${SITE_URL}/admin/master/enquiry/status/save',
+                method: 'post',
+                data: $("#status-form").serialize(),
+                success: function (resp) {
+                    if (resp) {
+                        $('#status-dialog').modal('hide');
+                        load();
+                    }
+                }
+            });
+            return false;
+        });
+    });
+</script>
 <%@include file="../../shared/footer.jsp" %>

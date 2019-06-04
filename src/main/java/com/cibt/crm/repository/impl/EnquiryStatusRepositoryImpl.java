@@ -63,8 +63,8 @@ public class EnquiryStatusRepositoryImpl implements EnquiryStatusRepository {
                 status.setId(rs.getInt("id"));
                 status.setName(rs.getString("status_name"));
                 status.setColor(rs.getString("status_color"));
-                status.setCreatedDate(new Date(rs.getDate("created_date").getTime()));
-                status.setModifiedDate(new Date(rs.getDate("modified_date").getTime()));
+                status.setCreatedDate(rs.getDate("created_date"));
+                status.setModifiedDate(rs.getDate("modified_date"));
                 return status;
             }
         });
@@ -80,8 +80,8 @@ public class EnquiryStatusRepositoryImpl implements EnquiryStatusRepository {
                 status.setId(rs.getInt("id"));
                 status.setName(rs.getString("status_name"));
                 status.setColor(rs.getString("status_color"));
-                status.setCreatedDate(new Date(rs.getDate("created_date").getTime()));
-                status.setModifiedDate(new Date(rs.getDate("modified_date").getTime()));
+                status.setCreatedDate(rs.getDate("created_date"));
+                status.setModifiedDate(rs.getDate("modified_date"));
                 return status;
             }
         });

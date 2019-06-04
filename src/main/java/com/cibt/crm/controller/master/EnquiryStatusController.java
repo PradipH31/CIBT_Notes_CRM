@@ -6,6 +6,7 @@
 package com.cibt.crm.controller.master;
 
 import com.cibt.crm.dto.EnquiryStatusDTO;
+import com.cibt.crm.entity.master.EnquiryStatus;
 import com.cibt.crm.service.EnquiryStatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,13 +15,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
  * @author HP B&O
  */
 @Controller
-@RequestMapping(value = "/admin/master/enquiry/statuss")
+@RequestMapping(value = "/admin/master/enquiry/status")
 public class EnquiryStatusController extends CRUDController<EnquiryStatusDTO> {
 
     @Autowired
@@ -30,9 +32,21 @@ public class EnquiryStatusController extends CRUDController<EnquiryStatusDTO> {
         uriPath = "master/enquirystatus/";
     }
 
+    @GetMapping(value = "/table")
+    public String table(Model model) {
+        model.addAttribute("records", service.findAll());
+        return uriPath + "/components/status-table";
+    }
+
+    @GetMapping(value = "/{id}")
+    @ResponseBody
+    public EnquiryStatus getDetail(@PathVariable("id") int id) {
+        return service.findById(id);
+    }
+
     @GetMapping(value = "/edit/{id}")
     @Override
-    public String edit(@PathVariable("id") int id,Model model) {
+    public String edit(@PathVariable("id") int id, Model model) {
         model.addAttribute("record", service.findById(id));
         return "master/enquirystatus/edit";
     }
@@ -44,6 +58,12 @@ public class EnquiryStatusController extends CRUDController<EnquiryStatusDTO> {
         return "redirect:/admin/master/enquiry/status";
     }
 
+    @PostMapping(value = "/save")
+    @ResponseBody
+    public boolean saveJson(EnquiryStatusDTO model) {
+        return service.save(model) > 0;
+    }
+
     @Override
     public String detail(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -51,7 +71,7 @@ public class EnquiryStatusController extends CRUDController<EnquiryStatusDTO> {
 
     @PostMapping(value = "/delete/{id}")
     @Override
-    public String delete(@PathVariable("id")int id) {
+    public String delete(@PathVariable("id") int id) {
         service.delete(id);
         return "redirect:/admin/master/enquiry/status";
     }

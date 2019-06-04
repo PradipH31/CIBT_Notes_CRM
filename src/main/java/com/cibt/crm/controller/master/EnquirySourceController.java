@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author HP B&O
  */
 @Controller
-@RequestMapping(value = "/admin/master/enquiry/sources")
+@RequestMapping(value = "/admin/master/enquiry/source")
 public class EnquirySourceController extends CRUDController<EnquirySourceDTO> {
 
     @Autowired

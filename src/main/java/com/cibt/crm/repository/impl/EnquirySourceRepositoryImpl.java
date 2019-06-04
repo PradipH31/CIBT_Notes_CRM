@@ -55,7 +55,7 @@ public class EnquirySourceRepositoryImpl implements EnquirySourceRepository {
 
     @Override
     public EnquirySource findById(int id) {
-        String sql = "select * from vw_enquiry_sources where id=?";
+        String sql = "select * from vw_enquiry_source where id=?";
         return template.queryForObject(sql, new Object[]{id}, new RowMapper<EnquirySource>() {
             @Override
             public EnquirySource mapRow(ResultSet rs, int i) throws SQLException {
@@ -63,8 +63,8 @@ public class EnquirySourceRepositoryImpl implements EnquirySourceRepository {
                 source.setId(rs.getInt("id"));
                 source.setName(rs.getString("source_name"));
                 source.setColor(rs.getString("source_color"));
-                source.setCreatedDate(new Date(rs.getDate("created_date").getTime()));
-                source.setModifiedDate(new Date(rs.getDate("modified_date").getTime()));
+                source.setCreatedDate(rs.getDate("created_date"));
+                source.setModifiedDate(rs.getDate("modified_date"));
                 return source;
             }
         });
@@ -72,7 +72,7 @@ public class EnquirySourceRepositoryImpl implements EnquirySourceRepository {
 
     @Override
     public List<EnquirySource> getAll() {
-        String sql = "select * from vw_enquiry_sources";
+        String sql = "select * from vw_enquiry_source";
         return template.query(sql, new RowMapper<EnquirySource>() {
             @Override
             public EnquirySource mapRow(ResultSet rs, int i) throws SQLException {
@@ -80,8 +80,8 @@ public class EnquirySourceRepositoryImpl implements EnquirySourceRepository {
                 source.setId(rs.getInt("id"));
                 source.setName(rs.getString("source_name"));
                 source.setColor(rs.getString("source_color"));
-                source.setCreatedDate(new Date(rs.getDate("created_date").getTime()));
-                source.setModifiedDate(new Date(rs.getDate("modified_date").getTime()));
+                source.setCreatedDate(rs.getDate("created_date"));
+                source.setModifiedDate(rs.getDate("modified_date"));
                 return source;
             }
         });
