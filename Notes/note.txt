@@ -17,6 +17,7 @@ Newer:
 	bootstrap(org.webjars)3.3.7
 	jquery(org.webjars)3.4.1
 	adminlte(org.webjars.bower)2.3.11
+	modelmapper(org.modelmapper)2.3.0
 	
 	
 Add modified date in update queries
