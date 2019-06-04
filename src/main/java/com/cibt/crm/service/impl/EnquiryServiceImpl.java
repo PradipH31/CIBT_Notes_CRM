@@ -7,8 +7,10 @@ package com.cibt.crm.service.impl;
 
 import com.cibt.crm.dto.EnquiryDTO;
 import com.cibt.crm.entity.master.Enquiry;
+import com.cibt.crm.repository.EnquiryRepository;
 import com.cibt.crm.service.EnquiryService;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,6 +19,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class EnquiryServiceImpl implements EnquiryService {
+
+    @Autowired
+    private EnquiryRepository repository;
 
     @Override
     public List<Enquiry> findAll() {
@@ -30,7 +35,7 @@ public class EnquiryServiceImpl implements EnquiryService {
 
     @Override
     public int save(EnquiryDTO model) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return 0;
     }
 
     @Override

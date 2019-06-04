@@ -42,6 +42,14 @@
                 </ul>
             </li>
             <li>
+                <a href="${SITE_URL}/admin/enquiries">
+                    <i class="glyphicon glyphicon-envelope"></i> <span>Enquiries</span>
+                    <span class="pull-right-container">
+                        <small class="label pull-right bg-green">new</small>
+                    </span>
+                </a>
+            </li>
+            <li>
                 <a href="${SITE_URL}/webjars/adminlte/2.3.11/pages/widgets.html">
                     <i class="fa fa-th"></i> <span>Widgets</span>
                     <span class="pull-right-container">

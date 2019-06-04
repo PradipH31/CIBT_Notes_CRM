@@ -1,4 +1,7 @@
 <%@include file="../../shared/header.jsp" %>
+<div class="page-header">
+    <h1>Enquiry Status</h1>
+</div>
 <div id="view-content"></div>
 <%@include file="components/status-form.jsp" %>
 <script>
