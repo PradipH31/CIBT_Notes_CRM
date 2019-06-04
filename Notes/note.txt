@@ -16,6 +16,7 @@ For Spring Framework:
 Newer:
 	bootstrap(org.webjars)3.3.7
 	jquery(org.webjars)3.4.1
+	adminlte(org.webjars.bower)2.3.11
 	
 	
 Add modified date in update queries
