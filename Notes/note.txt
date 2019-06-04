@@ -20,3 +20,9 @@ Newer:
 	
 	
 Add modified date in update queries
+
+Scheduling tasks:
+fixedDelay requires the first task to be completed
+fixedRate doesnot require
+initialDelay
+Cron job every hour

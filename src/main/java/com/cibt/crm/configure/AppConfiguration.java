@@ -5,6 +5,7 @@
  */
 package com.cibt.crm.configure;
 
+import java.util.Date;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,6 +13,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -25,6 +28,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @ComponentScan(basePackages = "com.cibt.crm ")
 @EnableWebMvc
+@EnableScheduling
 @PropertySource(value = "classpath:application.properties")
 public class AppConfiguration implements WebMvcConfigurer {
 
@@ -65,5 +69,11 @@ public class AppConfiguration implements WebMvcConfigurer {
     @Bean
     public JdbcTemplate getJdbcTemplate() {
         return new JdbcTemplate(getDataSource());
+    }
+
+//    @Scheduled(fixedDelay = 1000)
+    @Scheduled(cron = "* 0 * * * *")
+    public void autoUpdate() {
+        System.out.println("Hello World" + new Date());
     }
 }
