@@ -49,7 +49,7 @@
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini"><b>C</b>RM</span>
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><b>CIBT</b> CRM</span>
+                    <span class="logo-lg">${projectName}</span>
                 </a>
 
                 <!-- Header Navbar: style can be found in header.less -->
