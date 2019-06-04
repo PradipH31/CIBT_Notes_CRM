@@ -21,14 +21,15 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Name</label>
-                        <input type="text" name="name" required="required" class="form-control">
+                        <input type="text" id="source-name" name="name" required="required" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Color</label>
-                        <input type="text" name="color" required="required" class="form-control">
+                        <input type="text" id="source-color" name="color" required="required" class="form-control">
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <input type="hidden" name="id" id="source-id" value="">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     <button type="button" id="save-btn" class="btn btn-success">Save</button>
                 </div>
@@ -50,6 +51,7 @@
             $dialog.find('.modal-title').html('Add Enquiry Source');
             $dialog.modal();
             $('input').val('');
+            $('#source-id').val(0);
         });
         $("#source-form").on('submit', function () {
             $.ajax({

@@ -6,6 +6,7 @@
 package com.cibt.crm.controller.master;
 
 import com.cibt.crm.dto.EnquirySourceDTO;
+import com.cibt.crm.entity.master.EnquirySource;
 import com.cibt.crm.service.EnquirySourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,6 +36,12 @@ public class EnquirySourceController extends CRUDController<EnquirySourceDTO> {
     public String table(Model model) {
         model.addAttribute("sources", service.findAll());
         return uriPath + "/source-table";
+    }
+
+    @GetMapping(value = "/{id}")
+    @ResponseBody
+    public EnquirySource getDetail(@PathVariable("id") int id) {
+        return service.findById(id);
     }
 
     @GetMapping(value = "/edit/{id}")
