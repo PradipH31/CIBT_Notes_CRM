@@ -37,7 +37,7 @@ public class EnquiryStatusServiceImpl implements EnquiryStatusService {
     public int save(EnquiryStatusDTO model) {
         EnquiryStatus status=new EnquiryStatus();
         status.setId(model.getId());
-        status.setName(model.getColor());
+        status.setName(model.getName());
         status.setColor(model.getColor());
         if(status.getId()==0){
             return repository.insert(status);

@@ -1,6 +1,6 @@
 <%@include file="../../shared/header.jsp" %>
 <div class="page-header">
-    <h1>Enquiry Status</h1>
+    <h1>Enquiry Source</h1>
 </div>
 <div id="view-content"></div>
 <%@include file="components/source-form.jsp" %>
@@ -13,7 +13,9 @@
     }
     $(document).ready(function () {
         load();
+        console.log($("#source-form"));
         $("#source-form").on('submit', function () {
+            console.log('Clicked');
             $.ajax({
                 url: '${SITE_URL}/admin/master/enquiry/source/save',
                 method: 'post',

@@ -13,7 +13,7 @@ public class EnquiryDTO {
 
     private int id;
     private String firstName, lastName, email, contactNo, referedBy;
-    private int enquiryStatus, enquirySource;
+    private int statusId, sourceId;
 
     public int getId() {
         return id;
@@ -63,21 +63,20 @@ public class EnquiryDTO {
         this.referedBy = referedBy;
     }
 
-    public int getEnquiryStatus() {
-        return enquiryStatus;
+    public int getStatusId() {
+        return statusId;
     }
 
-    public void setEnquiryStatus(int enquiryStatus) {
-        this.enquiryStatus = enquiryStatus;
+    public void setStatusId(int statusId) {
+        this.statusId = statusId;
     }
 
-    public int getEnquirySource() {
-        return enquirySource;
+    public int getSourceId() {
+        return sourceId;
     }
 
-    public void setEnquirySource(int enquirySource) {
-        this.enquirySource = enquirySource;
+    public void setSourceId(int sourceId) {
+        this.sourceId = sourceId;
     }
-    
-    
+
 }

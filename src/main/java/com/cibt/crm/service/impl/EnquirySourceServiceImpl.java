@@ -37,7 +37,7 @@ public class EnquirySourceServiceImpl implements EnquirySourceService {
     public int save(EnquirySourceDTO model) {
         EnquirySource source=new EnquirySource();
         source.setId(model.getId());
-        source.setName(model.getColor());
+        source.setName(model.getName());
         source.setColor(model.getColor());
         if(source.getId()==0){
             return repository.insert(source);

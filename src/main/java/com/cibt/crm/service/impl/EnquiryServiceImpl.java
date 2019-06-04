@@ -10,6 +10,7 @@ import com.cibt.crm.entity.master.Enquiry;
 import com.cibt.crm.repository.EnquiryRepository;
 import com.cibt.crm.service.EnquiryService;
 import java.util.List;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,10 +23,12 @@ public class EnquiryServiceImpl implements EnquiryService {
 
     @Autowired
     private EnquiryRepository repository;
+    @Autowired
+    private ModelMapper mapper;
 
     @Override
     public List<Enquiry> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return repository.getAll();
     }
 
     @Override
@@ -35,7 +38,11 @@ public class EnquiryServiceImpl implements EnquiryService {
 
     @Override
     public int save(EnquiryDTO model) {
-        return 0;
+        Enquiry enquiry = mapper.map(model, Enquiry.class);
+        if (enquiry.getId() == 0) {
+            return repository.insert(enquiry);
+        }
+        return repository.update(enquiry);
     }
 
     @Override

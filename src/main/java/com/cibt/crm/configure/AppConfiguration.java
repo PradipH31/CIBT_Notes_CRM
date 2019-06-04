@@ -6,6 +6,7 @@
 package com.cibt.crm.configure;
 
 import java.util.Date;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -71,8 +72,13 @@ public class AppConfiguration implements WebMvcConfigurer {
         return new JdbcTemplate(getDataSource());
     }
 
+    @Bean
+    public ModelMapper getMapper() {
+        return new ModelMapper();
+    }
+
 //    @Scheduled(fixedDelay = 1000)
-    @Scheduled(cron = "* 0 * * * *")
+    @Scheduled(cron = "0 0 * * * *")
     public void autoUpdate() {
         System.out.println("Hello World" + new Date());
     }
