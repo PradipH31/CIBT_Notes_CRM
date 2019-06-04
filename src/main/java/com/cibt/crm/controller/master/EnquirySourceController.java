@@ -35,7 +35,7 @@ public class EnquirySourceController extends CRUDController<EnquirySourceDTO> {
     @GetMapping(value = "/table")
     public String table(Model model) {
         model.addAttribute("sources", service.findAll());
-        return uriPath + "/source-table";
+        return uriPath + "/components/source-table";
     }
 
     @GetMapping(value = "/{id}")
