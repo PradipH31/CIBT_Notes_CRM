@@ -61,14 +61,16 @@
                             </a>
                         </td>
                         <td>
-                            <c:choose>
-                                <c:when test="${enquiry.visited}">
-                                    Visited
-                                </c:when>
-                                <c:otherwise>
-                                    <a href="">Make Visited</a>
-                                </c:otherwise>
-                            </c:choose>
+                            <span class="visited">
+                                <c:choose>
+                                    <c:when test="${enquiry.visited}">
+                                        Yes
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a href="javascript:vod(0)" class="visited-btn" data-id="${enquiry.id}" data-name="${enquiry.firstName} ${enquiry.lastName}">Set visited</a>
+                                    </c:otherwise>
+                                </c:choose>
+                            </span>
                         </td>
                         <td>
                             <a href="javascript:void(0)" data-id="${enquiry.id}" class="edit-btn btn btn-success btn-xs" title="Edit Enquiry">
@@ -85,6 +87,26 @@
     </div>
 </div>
 <script>
+    $(function () {
+        $('.visited-btn').on('click', function () {
+            var $this = $(this);
+            if (confirm('Are you sure ' + $this.attr('data-name') + ' has visited?')) {
+                var $id = $this.attr('data-id');
+                $.post('${SITE_URL}/admin/enquiries/makeVisited', {id: $id}, function (data) {
+                    $this.parent('span.visited').html('Yes');
+                });
+            }
+            return false;
+        });
+
+        $('.add-follow-btn').on('click', function () {
+            console.log('ASD');
+            var $this = $(this);
+            var $dialog = $('#followup-dialog');
+            $dialog.find('.modal-title').html('Follow-up for ' + $this.attr('data-name'));
+            $dialog.modal();
+        });
+    });
     $(".edit-btn").on('click', function () {
         let $id = $(this).attr('data-id');
         $.getJSON('${pageContext.request.contextPath}/admin/master/enquiry/status/' + $id, function (data) {

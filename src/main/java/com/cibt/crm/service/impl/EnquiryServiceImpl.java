@@ -33,7 +33,7 @@ public class EnquiryServiceImpl implements EnquiryService {
 
     @Override
     public Enquiry findById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return repository.findById(id);
     }
 
     @Override
@@ -48,5 +48,16 @@ public class EnquiryServiceImpl implements EnquiryService {
     @Override
     public int delete(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int makeVisited(int id, boolean visited) {
+        int result = 0;
+        Enquiry enquiry = repository.findById(id);
+        if (enquiry != null) {
+            enquiry.setVisited(visited);
+            result = repository.update(enquiry);
+        }
+        return result;
     }
 }

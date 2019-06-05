@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
@@ -48,6 +50,12 @@ public class EnquiryController {
     public String save(@ModelAttribute("EnquiryDTO") EnquiryDTO enquiry) {
         service.save(enquiry);
         return "redirect:admin/enquiries";
+    }
+
+    @PostMapping(value = "/makeVisited")
+    @ResponseBody
+    public String makeVisited(@RequestParam("id") int id) {
+        return "" + service.makeVisited(id, true);
     }
 
 }
