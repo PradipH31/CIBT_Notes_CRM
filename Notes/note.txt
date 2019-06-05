@@ -18,6 +18,9 @@ Newer:
 	jquery(org.webjars)3.4.1
 	adminlte(org.webjars.bower)2.3.11
 	modelmapper(org.modelmapper)2.3.0
+Hibernate:
+	spring-orm(org.springframework)5.1.6
+	hibernate-core(org.hibernate)5.4.2
 	
 	
 Add modified date in update queries

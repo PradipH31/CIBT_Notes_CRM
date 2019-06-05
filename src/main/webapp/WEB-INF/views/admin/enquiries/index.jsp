@@ -4,11 +4,10 @@
 </div>
 <div class="box">
     <div class="box-header with-header">
-        <h3 class="box-title">
-            <a href="javascript:void(0)" id="add-btn" class="btn btn-primary" title="Add Enquiry Status">
-                <span class="glyphicon glyphicon-plus"></span>
-            </a>
-        </h3>
+        <h3 class="box-title"><a href="${SITE_URL}/admin/enquiries/add" id="add-btn" class='btn btn-primary btn-xs' title="Add Enquiry">
+                <span class='glyphicon glyphicon-plus'></span>
+            </a></h3>
+
         <div class="box-tools">
             <div class="input-group input-group-sm" style="width: 150px;">
                 <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
@@ -19,20 +18,19 @@
             </div>
         </div>
     </div>
-    <!-- /.box-header -->
-    <div class="box-header with-border">
-        <table class="table table-hover">
+    <div class="box-body table-responsive no-padding">
+        <table class='table table-hover'>
             <thead>
             <th>Id</th>
             <th>Name</th>
             <th>Email</th>
             <th>Contact No</th>
             <th>Enquiry Date</th>
-            <th>Enquiry Source</th>
-            <th>Enquiry Status</th>
-            <th>Action</th>
+            <th>Source</th>
+            <th>Status</th>
             <th>Visited</th>
             <th>Follow</th>
+            <th>Action</th>
             </thead>
             <tbody>
                 <c:forEach var="enquiry" items="${enquiries}">
@@ -43,39 +41,37 @@
                         <td>${enquiry.contactNo}</td>
                         <td>${enquiry.createdDate}</td>
                         <td>
-                            <label class="label" style="background: ${enquiry.source.color}">
-                                ${enquiry.source.name}
-                            </label>
+                            <label style="background: ${enquiry.source.color}" class="label">${enquiry.source.name}</label>
                         </td>
                         <td>
-                            <label class="label" style="background: ${enquiry.status.color}">
-                                ${enquiry.status.name}
-                            </label>
+                            <label for="" class="label" style="background:${enquiry.status.color}">${enquiry.status.name}</label>
+                        </td>                       
+                        <td>
+                            <span class="visited">
+                                <c:choose>
+                                    <c:when test="${enquiry.visited}">
+                                        Yes
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a href="javascript:vod(0)" class="visited-btn" data-id="${enquiry.id}" data-name="${enquiry.firstName} ${enquiry.lastName}">Set visited</a>
+                                    </c:otherwise>
+                                </c:choose>
+                            </span>
                         </td>
                         <td>
-                            <a href="javascript:void(0)" data-id="${enquiry.id}" class="edit-btn btn btn-success btn-xs" title="Edit Enquiry">
-                                <span class="glyphicon glyphicon-pencil"></span>
+                            <a href="javascript:void(0)" data-id="${enquiry.id}" data-name="${enquiry.firstName} ${enquiry.lastName}" class='add-follow-btn btn btn-default btn-xs' title="Add Follow-Up">
+                                <span class='glyphicon glyphicon-plus'></span>
                             </a>
-                            <a href="${SITE_URL}/admin/master/enquiry/source/delete/${enquiry.id}" class="btn btn-danger btn-xs" title="Delete Enquiry">
-                                <span class="glyphicon glyphicon-trash"></span>
+                            <a href="${SITE_URL}/admin/master/enquiry/delete/${enquiry.id}" class='btn btn-danger btn-xs' title="Delete Enquiry">
+                                <span class='glyphicon glyphicon-trash'></span>
                             </a>
                         </td>
                         <td>
-                            <c:choose>
-                                <c:when test="${enquiry.visited}">
-                                    Visited
-                                </c:when>
-                                <c:otherwise>
-                                    <a href="">Make Visited</a>
-                                </c:otherwise>
-                            </c:choose>
-                        </td>
-                        <td>
-                            <a href="javascript:void(0)" data-id="${enquiry.id}" class="edit-btn btn btn-success btn-xs" title="Edit Enquiry">
-                                <span class="glyphicon glyphicon-plus"></span>
+                            <a href="javascript:void(0)" data-id="${enquiry.id}" class='edit-btn btn btn-success btn-xs' title="Edit Enquiry">
+                                <span class='glyphicon glyphicon-pencil'></span>
                             </a>
-                            <a href="${SITE_URL}/admin/master/enquiry/source/delete/${enquiry.id}" class="btn btn-danger btn-xs" title="Delete Enquiry">
-                                <span class="glyphicon glyphicon-trash"></span>
+                            <a href="${SITE_URL}/admin/master/enquiry/delete/${enquiry.id}" class='btn btn-danger btn-xs' title="Delete Enquiry">
+                                <span class='glyphicon glyphicon-trash'></span>
                             </a>
                         </td>
                     </tr>
@@ -84,24 +80,26 @@
         </table>
     </div>
 </div>
+<%@include file="components/followup-form.jsp" %>
 <script>
-    $(".edit-btn").on('click', function () {
-        let $id = $(this).attr('data-id');
-        $.getJSON('${pageContext.request.contextPath}/admin/master/enquiry/status/' + $id, function (data) {
-            $('#status-id').val(data.id);
-            $('#status-name').val(data.name);
-            $('#status-color').val(data.color);
-            let $dialog = $("#status-dialog");
-            $dialog.find('.modal-title').html('Edit Enquiry Status');
+    $(function () {
+        $('.visited-btn').on('click', function () {
+            var $this = $(this);
+            if (confirm('Are you sure ' + $this.attr('data-name' + 'has visited?'))) {
+                var $id = $this.attr('data-id');
+                $.post('${SITE_URL}/admin/enquiries/makeVisited', {id: $id}, function (data) {
+                    $this.parent('span.visited').html('Yes');
+                });
+            }
+            return false;
+        });
+
+        $('.add-follow-btn').on('click', function () {
+            var $this = $(this);
+            var $dialog = $('#followup-dialog');
+            $dialog.find('.modal-title').html('Follow-up for ' + $this.attr('data-name'));
             $dialog.modal();
         });
-    });
-    $("#add-btn").on('click', function () {
-        let $dialog = $("#status-dialog");
-        $dialog.find('.modal-title').html('Add Enquiry Status');
-        $dialog.modal();
-        $('input').val('');
-        $('#status-id').val(0);
     });
 </script>
 <%@include file="../../shared/footer.jsp" %>

@@ -41,12 +41,14 @@ public class EnquiryRepositoryImpl implements EnquiryRepository {
 
     @Override
     public int update(Enquiry model) {
-        String sql = "update tbl_enquiries set first_name=?,last_name=?,email=?,contact_no=?,"
-                + "enquiry_source_id=?,enquiry_status_id=?,refered_by=?,modified_date=CURRENT_TIMESTAMP where id =?"
-                + " values(?,?,?,?,?,?,?)";
+        String sql = "update tbl_enquiries set first_name=?,last_name=?,"
+                + "email=?,contact_no=?,enquiry_source_id=?,"
+                + "enquiry_status_id=?,refered_by=?,is_visited=?,modified_date=CURRENT_TIMESTAMP "
+                + " where id=?";
         return template.update(sql, new Object[]{
-            model.getFirstName(), model.getLastName(), model.getEmail(), model.getContactNo(),
-            model.getSource().getId(), model.getStatus().getId(), model.getReferedBy(), model.getId()
+            model.getFirstName(), model.getLastName(), model.getEmail(),
+            model.getContactNo(), model.getSource().getId(), model.getStatus().getId(),
+            model.getReferedBy(), model.isVisited(), model.getId()
         });
     }
 
@@ -57,7 +59,24 @@ public class EnquiryRepositoryImpl implements EnquiryRepository {
 
     @Override
     public Enquiry findById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "select * from tbl_enquiries where id=?";
+        return template.queryForObject(sql, new Object[]{id}, new RowMapper<Enquiry>() {
+            @Override
+            public Enquiry mapRow(ResultSet rs, int i) throws SQLException {
+                Enquiry enquiry = new Enquiry();
+                enquiry.setId(rs.getInt("id"));
+                enquiry.setFirstName(rs.getString("first_name"));
+                enquiry.setLastName(rs.getString("last_name"));
+                enquiry.setEmail(rs.getString("email"));
+                enquiry.setContactNo(rs.getString("contact_no"));
+                enquiry.setReferedBy(rs.getString("refered_by"));
+                enquiry.setSource(new EnquirySource(rs.getInt("enquiry_source_id")));
+                enquiry.setStatus(new EnquiryStatus(rs.getInt("enquiry_status_id")));
+                enquiry.setCreatedDate(rs.getDate("created_date"));
+                enquiry.setVisited(rs.getBoolean("is_visited"));
+                return enquiry;
+            }
+        });
     }
 
     @Override

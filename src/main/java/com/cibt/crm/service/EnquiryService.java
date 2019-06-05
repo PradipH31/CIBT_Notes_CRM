@@ -12,5 +12,7 @@ import com.cibt.crm.entity.master.Enquiry;
  *
  * @author HP B&O
  */
-public interface EnquiryService extends GenericService<EnquiryDTO,Enquiry> {
+public interface EnquiryService extends GenericService<EnquiryDTO, Enquiry> {
+
+    int makeVisited(int id, boolean visited);
 }
