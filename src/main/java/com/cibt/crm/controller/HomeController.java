@@ -6,9 +6,7 @@
 package com.cibt.crm.controller;
 
 import com.cibt.crm.entity.Campaign;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import com.cibt.crm.repository.CampaignRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,18 +22,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HomeController {
     
     @Autowired
-    private SessionFactory sessionFactory;
-    private Session session;
-    private Transaction transaction;
-    
+    private CampaignRepository repo;
+
     @GetMapping
     @ResponseBody
     public String index() {
-        session = sessionFactory.openSession();
-        transaction = session.beginTransaction();
-//        session.saveOrUpdate(new Campaign());
-        session.save(new Campaign());
-        transaction.commit();
+        repo.save(new Campaign());
         return "index";
     }
 }
