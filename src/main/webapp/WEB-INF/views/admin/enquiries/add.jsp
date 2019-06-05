@@ -42,9 +42,6 @@
                                 <label for="statusId">Status</label>
                                 <select name="statusId" id="statusId" class="form-control">
                                     <option value="">Select Status</option>
-                                    <c:forEach var="status" items="${statusData}">
-                                        <option value="${status.id}">${status.name}</option>
-                                    </c:forEach>
                                 </select>
                             </div>
                         </div>
@@ -53,9 +50,6 @@
                                 <label for="sourceId">Source</label>
                                 <select name="sourceId" id="sourceId" class="form-control">
                                     <option value="">Select Source</option>
-                                    <c:forEach var="source" items="${sources}">
-                                        <option value="${source.id}">${source.name}</option>
-                                    </c:forEach>
                                 </select>
                             </div<>
                         </div>
@@ -85,4 +79,44 @@
     <div class="col-md-2"></div>
 </div>
 </form>
+<script>
+    function loadComboData(params) {
+        $.ajax({
+            method: 'get',
+            url: params.url,
+            dataType: 'json',
+            success: function (data) {
+                var $el = $(params.el);
+                $el.find('option').remove();
+                $el.append($("<option/>").val('').text(params.title));
+                $.each(data, function (i, o) {
+                    $el.append($("<option/>").val(o[params.col[0]]).text(o[params.col[1]]));
+                });
+            },
+            error: function (err) {
+                alert("Invalid url");
+                console.log(err);
+            }
+        });
+    }
+
+    $(document).ready(function ()
+    {
+        loadComboData({
+            url: '${SITE_URL}/admin/master/enquiry/source/json',
+            el: '#sourceId',
+            title: 'Select Enquiry Source',
+            col: ['id', 'name']
+        });
+
+        loadComboData({
+            url: '${SITE_URL}/admin/master/enquiry/status/json',
+            el: '#statusId',
+            title: 'Select Enquiry Status',
+            col: ['id', 'name']
+        });
+
+    });
+</script>
+
 <%@include file="../../shared/footer.jsp" %>

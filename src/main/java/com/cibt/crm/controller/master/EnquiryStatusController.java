@@ -8,6 +8,7 @@ package com.cibt.crm.controller.master;
 import com.cibt.crm.dto.EnquiryStatusDTO;
 import com.cibt.crm.entity.master.EnquiryStatus;
 import com.cibt.crm.service.EnquiryStatusService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -74,6 +75,12 @@ public class EnquiryStatusController extends CRUDController<EnquiryStatusDTO> {
     public String delete(@PathVariable("id") int id) {
         service.delete(id);
         return "redirect:/admin/master/enquiry/status";
+    }
+
+    @GetMapping(value = "/json")
+    @ResponseBody
+    public List<EnquiryStatus> json() {
+        return service.findAll();
     }
 
 }

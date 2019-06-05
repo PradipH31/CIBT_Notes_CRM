@@ -41,8 +41,6 @@ public class EnquiryController {
 
     @GetMapping(value = "/add")
     public String add(Model model) {
-        model.addAttribute("sources", sourceService.findAll());
-        model.addAttribute("statusData", statusService.findAll());
         return "admin/enquiries/add";
     }
 
