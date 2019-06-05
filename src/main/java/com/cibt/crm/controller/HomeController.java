@@ -20,14 +20,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping(value = "/")
 public class HomeController {
-    
+
     @Autowired
     private CampaignRepository repo;
 
     @GetMapping
     @ResponseBody
     public String index() {
-        repo.save(new Campaign());
-        return "index";
+        String content = "";
+        for (Campaign c : repo.getAll()) {
+            content += c.getName();
+        }
+        return content;
+//        return "index";
     }
 }

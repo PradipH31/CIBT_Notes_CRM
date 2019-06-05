@@ -27,7 +27,6 @@ public class CampaignRepositoryImpl implements CampaignRepository {
     private Transaction transaction;
 
     public CampaignRepositoryImpl() {
-        session = sessionFactory.openSession();
     }
 
     @Override
@@ -52,12 +51,14 @@ public class CampaignRepositoryImpl implements CampaignRepository {
 
     @Override
     public List<Campaign> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        session = sessionFactory.openSession();
+        return session.createQuery("SELECT c From Campaign c")
+                .list();
     }
 
     @Override
     public void save(Campaign model) {
-
+        session = sessionFactory.openSession();
         transaction = session.beginTransaction();
         session.saveOrUpdate(model);
         transaction.commit();
