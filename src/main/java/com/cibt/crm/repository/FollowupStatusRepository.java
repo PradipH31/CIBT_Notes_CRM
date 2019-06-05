@@ -3,21 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.cibt.crm.service;
+package com.cibt.crm.repository;
 
-import java.util.List;
+import com.cibt.crm.entity.master.FollowupStatus;
 
 /**
  *
  * @author HP B&O
  */
-public interface GenericService<TDTO, TMODEL> {
+public interface FollowupStatusRepository extends GenericRepository<FollowupStatus> {
 
-    List<TMODEL> findAll();
-
-    TMODEL findById(int id);
-
-    int save(TDTO model);
-
-    int delete(int id);
 }

@@ -5,10 +5,10 @@
  */
 package com.cibt.crm.service.impl;
 
-import com.cibt.crm.dto.EnquiryStatusDTO;
-import com.cibt.crm.entity.master.EnquiryStatus;
-import com.cibt.crm.repository.EnquiryStatusRepository;
-import com.cibt.crm.service.EnquiryStatusService;
+import com.cibt.crm.dto.FollowupStatusDTO;
+import com.cibt.crm.entity.master.FollowupStatus;
+import com.cibt.crm.repository.FollowupStatusRepository;
+import com.cibt.crm.service.FollowupStatusService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,24 +18,24 @@ import org.springframework.stereotype.Service;
  * @author HP B&O
  */
 @Service
-public class EnquiryStatusServiceImpl implements EnquiryStatusService{
+public class FollowupStatusServiceImpl implements FollowupStatusService{
 
     @Autowired
-    private EnquiryStatusRepository repository;
+    private FollowupStatusRepository repository;
     
     @Override
-    public List<EnquiryStatus> findAll() {
+    public List<FollowupStatus> findAll() {
         return repository.getAll();
     }
 
     @Override
-    public EnquiryStatus findById(int id) {
+    public FollowupStatus findById(int id) {
         return repository.findById(id);
     }
 
     @Override
-    public int save(EnquiryStatusDTO model) {
-        EnquiryStatus status = new EnquiryStatus();
+    public int save(FollowupStatusDTO model) {
+        FollowupStatus status = new FollowupStatus();
         status.setId(model.getId());
         status.setName(model.getName());
         status.setColor(model.getColor());

@@ -23,6 +23,7 @@ public class EnquiryServiceImpl implements EnquiryService {
 
     @Autowired
     private EnquiryRepository repository;
+
     @Autowired
     private ModelMapper mapper;
 

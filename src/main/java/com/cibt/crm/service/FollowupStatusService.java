@@ -5,19 +5,13 @@
  */
 package com.cibt.crm.service;
 
-import java.util.List;
+import com.cibt.crm.dto.FollowupStatusDTO;
+import com.cibt.crm.entity.master.FollowupStatus;
 
 /**
  *
  * @author HP B&O
  */
-public interface GenericService<TDTO, TMODEL> {
-
-    List<TMODEL> findAll();
-
-    TMODEL findById(int id);
-
-    int save(TDTO model);
-
-    int delete(int id);
+public interface FollowupStatusService extends GenericService<FollowupStatusDTO, FollowupStatus>{
+    
 }

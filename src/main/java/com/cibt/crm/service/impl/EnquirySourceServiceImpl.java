@@ -18,11 +18,11 @@ import org.springframework.stereotype.Service;
  * @author HP B&O
  */
 @Service
-public class EnquirySourceServiceImpl implements EnquirySourceService {
+public class EnquirySourceServiceImpl implements EnquirySourceService{
 
     @Autowired
     private EnquirySourceRepository repository;
-
+    
     @Override
     public List<EnquirySource> findAll() {
         return repository.getAll();
@@ -35,20 +35,19 @@ public class EnquirySourceServiceImpl implements EnquirySourceService {
 
     @Override
     public int save(EnquirySourceDTO model) {
-        EnquirySource source=new EnquirySource();
+        EnquirySource source = new EnquirySource();
         source.setId(model.getId());
         source.setName(model.getName());
         source.setColor(model.getColor());
-        if(source.getId()==0){
+        if(source.getId() == 0){
             return repository.insert(source);
-        }else{
-            return repository.update(source);
         }
+        return repository.update(source);
     }
 
     @Override
     public int delete(int id) {
         return repository.delete(id);
     }
-
+    
 }
