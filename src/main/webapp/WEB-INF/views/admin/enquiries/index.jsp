@@ -5,7 +5,7 @@
 <div class="box">
     <div class="box-header with-header">
         <h3 class="box-title">
-            <a href="javascript:void(0)" id="add-btn" class="btn btn-primary" title="Add Enquiry Status">
+            <a href="${SITE_URL}/admin/enquiries/add" id="add-btn" class="btn btn-primary" title="Add Enquiry Status">
                 <span class="glyphicon glyphicon-plus"></span>
             </a>
         </h3>
