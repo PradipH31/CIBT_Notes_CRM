@@ -30,3 +30,12 @@ fixedDelay requires the first task to be completed
 fixedRate doesnot require
 initialDelay
 Cron job every hour
+
+Hibernate 
+@Column(name = "created_date", insertable = false)
+@Temporal(TemporalType.TIMESTAMP)
+private Date createdDate;
+
+@Column(name = "modified_date", nullable = true)
+@Temporal(TemporalType.TIMESTAMP)
+    private Date modifiedDate;

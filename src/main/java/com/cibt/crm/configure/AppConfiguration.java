@@ -6,6 +6,7 @@
 package com.cibt.crm.configure;
 
 import java.util.Date;
+import java.util.Properties;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +15,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.servlet.ViewResolver;
@@ -75,6 +77,22 @@ public class AppConfiguration implements WebMvcConfigurer {
     @Bean
     public ModelMapper getMapper() {
         return new ModelMapper();
+    }
+
+    private Properties getHibernateProperties() {
+        Properties properties = new Properties();
+        properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+        properties.put("hibernate.show_sql", true);
+        return properties;
+    }
+
+    @Bean
+    public LocalSessionFactoryBean getSessionFactory() {
+        LocalSessionFactoryBean bean = new LocalSessionFactoryBean();
+        bean.setDataSource(getDataSource());
+        bean.setPackagesToScan("com.cibt.crm.entity");
+        bean.setHibernateProperties(getHibernateProperties());
+        return bean;
     }
 
 //    @Scheduled(fixedDelay = 1000)
