@@ -48,12 +48,7 @@ public class CampaignRepositoryImpl implements CampaignRepository {
     @Override
     public Campaign findById(int id) {
         session = sessionFactory.openSession();
-        Query query = session.getNamedQuery("campaign.findbyid");
-        query.setParameter("id", id);
-        if (query.getResultList().size() > 0) {
-            return (Campaign) query.getSingleResult();
-        }
-        return null;
+        return session.find(Campaign.class, id);
     }
 
     @Override
