@@ -12,6 +12,7 @@ import javax.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.NativeQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -54,8 +55,9 @@ public class CampaignRepositoryImpl implements CampaignRepository {
     @Override
     public List<Campaign> getAll() {
         session = sessionFactory.openSession();
-        return session.getNamedQuery("campaign.all")
-                .list();
+        NativeQuery query = session.createNativeQuery("select * from tbl_campaigns");
+        query.addEntity(Campaign.class);
+        return query.getResultList();
     }
 
     @Override
