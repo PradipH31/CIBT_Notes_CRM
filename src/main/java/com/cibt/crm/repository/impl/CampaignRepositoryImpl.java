@@ -8,6 +8,7 @@ package com.cibt.crm.repository.impl;
 import com.cibt.crm.entity.Campaign;
 import com.cibt.crm.repository.CampaignRepository;
 import java.util.List;
+import javax.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -46,13 +47,19 @@ public class CampaignRepositoryImpl implements CampaignRepository {
 
     @Override
     public Campaign findById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        session = sessionFactory.openSession();
+        Query query = session.getNamedQuery("campaign.findbyid");
+        query.setParameter("id", id);
+        if (query.getResultList().size() > 0) {
+            return (Campaign) query.getSingleResult();
+        }
+        return null;
     }
 
     @Override
     public List<Campaign> getAll() {
         session = sessionFactory.openSession();
-        return session.createQuery("SELECT c From Campaign c")
+        return session.getNamedQuery("campaign.all")
                 .list();
     }
 

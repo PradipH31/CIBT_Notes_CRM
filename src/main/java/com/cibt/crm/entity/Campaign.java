@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
 
 /**
  *
@@ -21,6 +23,10 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "tbl_campaigns")
+@NamedQueries({
+    @NamedQuery(name = "campaign.all", query = "SELECT c From Campaign c"),
+    @NamedQuery(name = "campaign.findbyid", query = "SELECT c From Campaign c where c.id=:id")
+})
 public class Campaign implements java.io.Serializable {
 
     @Id

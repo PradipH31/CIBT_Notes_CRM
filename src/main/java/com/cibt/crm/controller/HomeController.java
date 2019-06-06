@@ -31,6 +31,13 @@ public class HomeController {
         for (Campaign c : repo.getAll()) {
             content += c.getName();
         }
+        Campaign campaign = repo.findById(9);
+        if (campaign != null) {
+            content += "<br>";
+            content += campaign;
+        } else {
+            content += "No data";
+        }
         return content;
 //        return "index";
     }
