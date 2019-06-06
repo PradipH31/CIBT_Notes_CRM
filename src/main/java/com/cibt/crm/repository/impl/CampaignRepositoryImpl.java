@@ -9,6 +9,9 @@ import com.cibt.crm.entity.Campaign;
 import com.cibt.crm.repository.CampaignRepository;
 import java.util.List;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -55,9 +58,11 @@ public class CampaignRepositoryImpl implements CampaignRepository {
     @Override
     public List<Campaign> getAll() {
         session = sessionFactory.openSession();
-        NativeQuery query = session.createNativeQuery("select * from tbl_campaigns");
-        query.addEntity(Campaign.class);
-        return query.getResultList();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Campaign> query = builder.createQuery(Campaign.class);
+        Root<Campaign> root = query.from(Campaign.class);
+        query.select(root);
+        return session.createQuery(query).getResultList();
     }
 
     @Override
